@@ -122,6 +122,41 @@ function addUser() {
 
 }
 
+function addContact() {
+    var newFname = document.getElementById("firstNameInput").value;
+    var newLname = document.getElementById("lastNameInput").value;
+    var newEmail = document.getElementById("email2").value;
+    var newPhone = document.getElementById("phone2").value;
+
+    document.getElementById("contactAddResult").innerHTML = "";
+
+    var jsonPayload = '{"fname" : "' + newFname + '", "lname" : "' + newLname + '", "email" : "' + newEmail + '", "phone" : "' + newPhone + '", "userID" : "' + userId + '"}';
+    console.log(jsonPayload);
+
+    console.log(jsonPayload);
+    var url = urlBase + '/AddContact.' + extension;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+                // clears data in add contact popup
+                document.getElementById("firstNameInput").value = document.getElementById("firstNameInput").defaultValue;
+                document.getElementById("lastNameInput").value = document.getElementById("lastNameInput").defaultValue;
+                document.getElementById("email2").value = document.getElementById("email2").defaultValue;
+                document.getElementById("phone2").value = document.getElementById("phone2").defaultValue;
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("contactAddResult").innerHTML = err.message;
+    }
+
+}
+
 function searchContact() {
     var srch = document.getElementById("searchText").value;
     document.getElementById("contactSearchResult").innerHTML = "";
