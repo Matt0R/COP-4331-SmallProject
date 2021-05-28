@@ -53,7 +53,7 @@
                 <div class="modal-footer">
                     <span id="contactAddResult"></span>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                    <button type="button" class="btn btn-edit" onclick="addContact();">Submit</button>
+                    <button type="button" class="btn btn-std" onclick="addContact();">Submit</button>
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                 <div class="modal-footer">
                     <span id="contactEditResult"></span>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-edit" onclick="editContact();">Save</button>
+                    <button type="button" class="btn btn-std" onclick="editContact();">Save</button>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 <div class="modal-footer">
                     <span id="contactDeleteResult"></span>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-edit" id="deleteConfirmed" onclick="deleteContact();">Confirm</button>
+                    <button type="button" class="btn btn-std" id="deleteConfirmed" onclick="deleteContact();">Confirm</button>
                 </div>
             </div>
         </div>
@@ -131,8 +131,14 @@
                 <div class="col-sm-5 col-md-4 col-lg-3">
                     <div class="input-group">
                         <input type="text" placeholder="Search..." class="form-control" id="searchText" name="search">
-                        <button class="btn btn-edit" onclick="searchContact();"><i class="bi bi-search"></i></button>
-                        <span id="contactSearchResult"></span>
+                        <button class="btn btn-std" onclick="searchContact();"><i class="bi bi-search"></i></button>
+                         <div class="container">
+                           <div class="row">
+                             <div class="col" text-left>
+                               <span id="contactSearchResult"></span>
+                             </div>
+                           </div>
+                         </div>
                     </div>
                 </div>
                 <!-- Table -->
