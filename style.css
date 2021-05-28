@@ -7,6 +7,12 @@ body{
     border-radius: 25px;
     
 }
+
+.modal-footer{
+    border-radius: 25px;
+}
+
+
 .btn-login{
     height: 50px;
     width: 100%;
