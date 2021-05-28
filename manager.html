@@ -17,7 +17,6 @@
     <script type="text/javascript" src="./js/code.js"></script>
     <!--<link href="css/styles.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             readCookie();
@@ -33,7 +32,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add New Contact</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group text-center">
@@ -44,16 +43,16 @@
                         <input type="lastname" class="form-control mb-3" id="lastNameInput" placeholder="Last">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Email</label>
-                        <input type="password" class="form-control" id="email2" placeholder="Email">
+                        <input type="email" class="form-control" id="email2" placeholder="Email">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Phone #</label>
-                        <input type="password" class="form-control" id="phone2" placeholder="Phone #">
+                        <input type="phone" class="form-control" id="phone2" placeholder="Phone #">
 
                     </div>
                 </div>
                 <div class="modal-footer">
                     <span id="contactAddResult"></span>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
                     <button type="button" class="btn btn-edit" onclick="addContact();">Submit</button>
                 </div>
             </div>
@@ -72,22 +71,23 @@
                     <div class="form-group text-center">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">First Name</label>
-                        <input type="firstname" class="form-control mb-3" id="firstNameInput" placeholder="First">
+                        <input type="firstname" class="form-control mb-3" id="firstNameInputE" placeholder="First">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Last Name</label>
-                        <input type="lastname" class="form-control mb-3" id="lastNameInput" placeholder="Last">
+                        <input type="lastname" class="form-control mb-3" id="lastNameInputE" placeholder="Last">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Email</label>
-                        <input type="password" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="emailE" placeholder="Email">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Phone #</label>
-                        <input type="password" class="form-control" id="phone" placeholder="Phone #">
+                        <input type="phone" class="form-control" id="phoneE" placeholder="Phone #">
 
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <span id="contactEditResult"></span>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-edit">Save</button>
+                    <button type="button" class="btn btn-edit" onclick="editContact();">Save</button>
                 </div>
             </div>
         </div>
@@ -105,8 +105,9 @@
                     <p>Are you sure you wish to delete this contact?</p>
                 </div>
                 <div class="modal-footer">
+                    <span id="contactDeleteResult"></span>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-edit" id="deleteConfirmed">Confirm</button>
+                    <button type="button" class="btn btn-edit" id="deleteConfirmed" onclick="deleteContact();">Confirm</button>
                 </div>
             </div>
         </div>
@@ -117,7 +118,7 @@
         <div class="container">
             <div class="row">
             <div class="modal-footer">
-                <span id="userName"></span><br />
+                <span id="userName"></span>
                 <div class="col text-right"><button type="button" id="logoutButton" class="btn-logout float-end mt-2" onclick="doLogout();"><i class="bi bi-box-arrow-left"></i>
           </button>
           </div>
@@ -129,15 +130,16 @@
                 <!-- Search -->
                 <div class="col-sm-5 col-md-4 col-lg-3">
                     <div class="input-group">
-                        <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
-                        <button class="btn btn-edit"><i class="bi bi-search"></i></button>
+                        <input type="text" placeholder="Search..." class="form-control" id="searchText" name="search">
+                        <button class="btn btn-edit" onclick="searchContact();"><i class="bi bi-search"></i></button>
+                        <span id="contactSearchResult"></span>
                     </div>
                 </div>
-
                 <!-- Table -->
                 <table class="table table-sm mb-3">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">First</th>
                             <th scope="col">Last</th>
                             <th scope="col">Email</th>
@@ -145,72 +147,17 @@
                             <th scope="col">Date Added</th>
                             <th scope="col">
                                 <!-- Add Contact Button trigger modal -->
-                                <button type="button" class="btn btn-addcontact" data-bs-toggle="modal" data-bs-target="#addcontact">
+                                <button type="button" class="btn btn-addcontact" data-bs-toggle="modal" data-bs-target="#addcontact" onclick="deleteContactAddResultM();">
                   <i class="bi bi-person-plus"></i>
                 </button>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Example results. Start with <tr>, end with </tr>-->
-                        <tr>
-                            <td>John</td>
-                            <td>Smith</td>
-                            <td>john@smith.aol.org</td>
-                            <td>222-222-2222</td>
-                            <td>4/20/21</td>
-                            <td>
-                                <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact">
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                                <button type="button" class="btn-delete" data-bs-toggle="modal" data-bs-target="#deleteConfirmation"><i
-                    class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Notsmith</td>
-                            <td>johnnotsmith@smith.aol.org</td>
-                            <td>222-222-2223</td>
-                            <td>4/20/21</td>
-                            <td>
-                                <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact">
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                                <button type="button" class="btn-delete"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Notsmith</td>
-                            <td>johnnotsmith@smith.aol.org</td>
-                            <td>222-222-2223</td>
-                            <td>4/20/21</td>
-                            <td>
-                                <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact">
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                                <button type="button" class="btn-delete"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>Notsmith</td>
-                            <td>johnnotsmith@smith.aol.org</td>
-                            <td>222-222-2223</td>
-                            <td>4/20/21</td>
-                            <td>
-                                <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact">
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                                <button type="button" class="btn-delete"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-
+                    <tbody id = "sTable">
+                     
                     </tbody>
                 </table>
+
             </div>
         </div>
     </section>
