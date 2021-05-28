@@ -73,7 +73,7 @@ img{
   }
 
 .btn-edit{
-    background-color:  rgb(18, 131, 146);
+    background-color:  rgb(216, 206, 70);
     color: white;
     border-radius: 4px;
     font-weight: bold; 
@@ -82,13 +82,13 @@ img{
 }
 
 .btn-edit:hover{
-    background-color: rgb(156, 210, 218);
+    background-color:  rgb(248, 234, 107);
     border: 1px-solid;
     color: black;
 }
 
 .btn-delete{
-    background-color:  rgb(18, 131, 146);
+    background-color:  rgb(216, 23, 23);
     color: white;
     border-radius: 4px;
     font-weight: bold; 
@@ -97,7 +97,7 @@ img{
 }
 
 .btn-delete:hover{
-    background-color: rgb(156, 210, 218);
+    background-color: rgb(252, 86, 113);
     border: 1px-solid;
     color: black;
 }
@@ -148,4 +148,27 @@ img{
     background-color: rgb(252, 86, 113);
     border: 1px-solid;
     color: black;
+}
+
+.btn-std{
+    background-color:  rgb(18, 131, 146);
+    color: white;
+    border-radius: 4px;
+    font-weight: bold; 
+    border: none;
+    outline: none;
+}
+
+.btn-std:hover{
+    background-color: rgb(156, 210, 218);
+    border: 1px-solid;
+    color: black;
+}
+
+.table>thead:first-child>tr:first-child>th:first-child{
+    display: none;
+}
+
+.table>tbody>tr>td:first-child{
+    display: none;
 }
