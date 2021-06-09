@@ -12,7 +12,6 @@ body{
     border-radius: 25px;
 }
 
-
 .btn-login{
     height: 50px;
     width: 100%;
@@ -177,4 +176,9 @@ img{
 
 .table>tbody>tr>td:first-child{
     display: none;
+}
+
+.fail-whale
+{
+    color: red;
 }
