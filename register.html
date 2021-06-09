@@ -21,27 +21,27 @@
         <div class="container">
             <div class="row">
                 <h1 class="fs-1 mt-2">G3</h1>
-                <h2 class="fs-1 mb-4 text-center">Task Manager</h2>
+                <h2 class="fs-1 mb-4 text-center">Contact Manager</h2>
                 <h3 class="fs-3 mb-3">Sign Up</h3>
                 <span id="userAddResult"></span>
                 <form>
                     <div class="form-group text-center">
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">First Name</label>
-                        <input type="firstname" class="form-control mb-3" id="firstnameinput" placeholder="First">
+                        <input type="firstname" class="form-control mb-3" id="firstnameinput" placeholder="First" required>
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Last Name</label>
-                        <input type="lastname" class="form-control mb-3" id="lastnameinput" placeholder="Last">
+                        <input type="lastname" class="form-control mb-3" id="lastnameinput" placeholder="Last" required>
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Username</label>
                         <input type="username" class="form-control mb-3" id="usernameinput" placeholder="Username" required autofocus>
 
 
                         <label for="formControlInput" class="form-label fs-5 fw-bold">Password</label>
-                        <input type="password" class="form-control" id="passwordinput" placeholder="password">
+                        <input type="password" class="form-control" id="passwordinput" placeholder="password" required>
 
 
-                        <button type="button" class="btn-signup" onclick="addUser();">Sign Up</button>
+                        <button type="submit" class="btn-signup" onclick="addUser(); return false;">Sign Up</button>
                     </div>
                     <p>Already have an account? <a href="./">Sign In</a></p>
                 </form>
