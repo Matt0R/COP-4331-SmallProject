@@ -175,28 +175,18 @@ function searchContact() {
     try {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("contactSearchResult").innerHTML = "  Contact(s) has been retrieved";
+            
                 var jsonObject = JSON.parse(xhr.responseText);
+                
+                
+                if (jsonObject.results === undefined) { // if no object is returned
+                  document.getElementById("contactSearchResult").innerHTML = "No contact found";
+                  return;
+                } else {
+                  document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+                }
 
                 for (var i = 0; i < jsonObject.results.length; i++) {
-                // example table
-                /*<tr>
-                            <td>John</td>
-                            <td>Smith</td>
-                            <td>john@smith.aol.org</td>
-                            <td>222-222-2222</td>
-                            <td>4/20/21</td>
-                            <td>
-                                <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact">
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                                <button type="button" class="btn-delete" data-bs-toggle="modal" data-bs-target="#deleteConfirmation"><i
-                    class="bi bi-trash"></i></button>
-                            </td>
-                        </tr> */
-                    /*
-                    var row = '<tr> <td> + val[jsonObject.results[i].FirstName] + </td> <td>${jsonObject.results[i].LastName}</td> <td>${jsonObject.results[i].Email}</td> <td>${jsonObject.results[i].Phone}</td> <td>${jsonObject.results[i].Timestamp}</td> <td> <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact"><i class="bi bi-pencil-square"></i></button> <button type="button" class="btn-delete" data-bs-toggle="modal" data-bs-target="#deleteConfirmation"><i class="bi bi-trash"></i></button> </td> </tr>'
-                        row[0] = jsonObject.results[i].FirstName; */
                         var row = sTable.insertRow(i);
                         row.insertCell(0).innerHTML = jsonObject.results[i].ContactsID;
                         row.insertCell(1).innerHTML = jsonObject.results[i].FirstName;
@@ -208,19 +198,8 @@ function searchContact() {
                         
                         buttonRow.innerHTML = '<button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#editcontact" onclick="updateCurrentRow(this.parentElement); populateEditPopUp();"><i class="bi bi-pencil-square"></i></button>';
                         buttonRow.innerHTML += '<button type="button" class="btn-delete" data-bs-toggle="modal" data-bs-target="#deleteConfirmation" onclick="updateCurrentRow(this.parentElement); deleteContactResultM();"><i class="bi bi-trash"></i></button>';
-                        
-                    
-                       console.log(jsonObject.results[i].FirstName); 
-                    // contactList.innerHTML += row;
-                    
-                    // iterates through all contacts jsonObject.result[i].variable wanted
-                    
-                    //if (i < jsonObject.results.length - 1) {
-                        //contactList += "<br />\r\n";
-                   // }
                 }
 
-                // document.getElementsByTagName("p")[0].innerHTML = colorList;
             }
         };
         xhr.send(jsonPayload);
@@ -230,7 +209,7 @@ function searchContact() {
 
 
 }
-
+// ignore naming of next two functions its bad. They are called in the button.
 function deleteContactResultM() {
   document.getElementById("contactDeleteResult").innerHTML = "";
 }
